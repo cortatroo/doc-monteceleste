@@ -1,0 +1,17 @@
+site_name: Documentação Typebot — CRM e TicketZ
+
+theme:
+  name: material
+  language: pt-BR
+
+nav:
+  - Início: index.md
+  - Fluxo Typebot + CRM + TicketZ: fluxo-typebot-crm.md
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.superfences
+
+extra_javascript:
+  - https://unpkg.com/mermaid@11/dist/mermaid.min.js
+  - javascripts/mermaid.js
