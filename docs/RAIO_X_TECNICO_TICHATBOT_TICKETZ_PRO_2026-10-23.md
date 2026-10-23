@@ -1,4 +1,4 @@
-# RAIO-X TÉCNICO E MANUAL MESTRE DE OPERAÇÃO — TICHATBOT
+# RAIO-X TÉCNICO E MANUAL DE OPERAÇÃO — TICHATBOT
 ## TicketZ PRO · Typebot · NocoDB · CRM Gateway/Edge · Silo S3 · Rocket.Chat · Backup DR
 
 **Edição:** 1.0 — consolidada em 23/10/2026  
