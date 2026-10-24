@@ -180,6 +180,28 @@ A nuvem foi confirmada visualmente pelo responsável como funcional (**O**). Nã
 
 **Consultas seguras:** no Ubuntu, `sudo sshd -t`, `sudo sshd -T -C user=cobian-reader,host=localhost,addr=192.168.200.127`, `sudo getfacl /backup/completed/<ID>/NOTIFICATION_SENT`, `systemctl status backup-dr.timer`; no Windows, `Get-ScheduledTask -TaskName Copia_backup`, `Get-ScheduledTaskInfo -TaskName Copia_backup`. Não publicar a linha completa `open sftp://...` nem executar comandos que alterem o conteúdo dos backups sem plano de mudança.
 
+## 12.1 A configuração de rotação do log WinSCP foi implantada com sucesso.
+
+Todos os testes retornaram os resultados esperados:
+| Verificação | Resultado |
+|WinSCP configurado | Aprovado
+|Script SFTP preservado | Aprovado
+|Registro de log preservado | Aprovado
+|Rotação /logsize=5*10M	 | Configurada
+|Tarefa Copia_backup | Habilitada
+|Última execução automática	| Sucesso — código 0
+|Próxima execução |	25/10/2026 às 03h
+
+O log atual possui 7.329.016 bytes (aproximadamente 6,99 MiB). É normal que ainda não existam arquivos históricos de rotação.
+
+**Situação atual**
+
+O limite configurado é de 10 MB por arquivo, com até cinco arquivos históricos. Quando o log atingir o limite durante a execução do WinSCP, a rotação deverá ocorrer automaticamente.
+Arquivos modificados: somente C:\Backups_MonteCeleste\puxar_backup.bat.
+
+**Cópia de segurança preservada:**
+C:\Backups_MonteCeleste\puxar_backup.bat.before-log-rotation-20261024-163602
+
 ## 13. Checklist encerrado com as evidências da auditoria
 | Controle | Situação |
 |---|---|
