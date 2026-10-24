@@ -7,6 +7,7 @@ theme:
 nav:
   - Início: index.md
   - Fluxo Typebot + CRM + TicketZ: fluxo-typebot-crm.md
+  - RAIO-X Técnico e Manual de Operação: RAIO_X_TECNICO_TICHATBOT_TICKETZ_PRO_2026-10-23.md
 
 markdown_extensions:
   - attr_list
