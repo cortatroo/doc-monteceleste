@@ -1,4 +1,4 @@
-# RAIO-X TÉCNICO E MANUAL DE OPERAÇÃO — TICHATBOT
+# RAIO-X TÉCNICO E MANUAL MESTRE DE OPERAÇÃO — TICHATBOT
 ## TicketZ PRO · Typebot · NocoDB · CRM Gateway/Edge · Silo S3 · Rocket.Chat · Backup DR
 
 **Edição:** 1.0 — consolidada em 23/10/2026  
@@ -21,7 +21,7 @@ O servidor `tichatbot` encontra-se **operacional na evidência auditada**: 16 de
 | Eixo | Estado | Evidência/limite |
 |---|---|---|
 | Host, disco, Docker e containers | [V] aprovado | Ubuntu 24.04.5, Docker 29.9.1/Compose v5.6.0; 16 running |
-| HTTP/HTTPS e certificados | [V] aprovado com ressalva DNS | mchat, botbuilder, botviewer, minio, nocodb, crm-api, dialog |
+| HTTP/HTTPS e certificados | [V] aprovado | mchat, botbuilder, botviewer, minio, nocodb, crm-api, dialog |
 | PostgreSQL/Redis | [V] aprovado | Estrutura íntegra, ausência de índices inválidos; AOF+RDB |
 | Silo S3 | [V] health OK | bucket `typebot` vazio ao inspecionar, não inferir perda de dados |
 | CRM NocoDB → Gateway → Edge | [V] aprovado | Roteamento, validações, códigos, isolamento e saúde |
@@ -173,9 +173,9 @@ Somente **Docker proxy** publica portas do Docker no host: `0.0.0.0:80→80/tcp`
 | `minio.ncloud.app.br` | S3/Silo | raiz 403 (esperado para API sem credencial); health 200 |
 | `nocodb.ncloud.app.br` | CRM NocoDB | HTTPS 200 |
 | `crm-api.ncloud.app.br` | CRM Edge | `/` 404 esperado; `/health` 200 |
-| `dialog.ncloud.app.br` | Rocket.Chat | 200 com `--resolve` ao IP privado; **anomalia Unbound: resposta pública 143.202.0.135** e conexão local recusada nessa rota |
+| `dialog.ncloud.app.br` | Rocket.Chat |  HTTPS 200 |
 
-A anomalia `dialog` de DNS interno ficou registrada, sem ajuste por decisão de evitar impacto. Validar DNS no pfSense quando houver demanda de acesso interno ao Rocket.Chat. Nunca substituir certificados ou mexer nas regras pfSense por suposição.
+Erros de acesso a algum dos serviços/dominios na rede interna, verificar se o DNS está sendo resolvido pelo próprio PfSense (192.168.200.127) e se está cadastrado em Serviços -> DNS Resolver no PfSense.
 
 ## 8. Banco de dados e Redis — estado auditado
 
@@ -357,7 +357,6 @@ Não prometer tempo de restauração: métricas RTO/RPO não foram medidas nesta
 | Retenção espelhada Windows | `synchronize local -delete` | **Manter** como política intencional |
 | Rocket.Chat/MongoDB fora do DR | exclusão intencional | **Manter** e documentar claramente |
 | Nextcloud/nuvem | upload visualmente confirmado | **Não auditar mais**, decisão expressa do operador |
-| DNS dialog privado | divergência com resposta pública | Registrar, não ajustar sem demanda |
 | Typebot aresta órfã e CRM rascunho divergente | evidências estáticas | Não editar fluxos funcionando |
 
 ### 12.1 Docker Socket: por que `:ro` não isola a API
@@ -466,7 +465,6 @@ Validação de leitura só prova ACL, não integridade. Antes de anunciar sucess
 | Alta / política de proteção de dados | `ENCRYPTION_ENABLED=false` | Decidir criptografia em repouso e proteção das cópias; sem urgência para alterar sistema vivo, mas risco reconhecido |
 | Média / manutenção planejada | Rotação logs em daemon/containers | reinício/recriação aprovados, `LogConfig` com `max-size`, `max-file` |
 | Média / processo | Auditoria periódica das versões mutáveis `:latest`/`:pro` | registrar digests, planejar updates e rollback |
-| Média / rede | DNS `dialog.ncloud.app.br` | resolver divergência apenas com autorização |
 | Média / capacidade | Redis AOF, memória, falta de limites | monitorar tendências; não mudar sem medição |
 | Média / continuidade | Cópia nuvem sem hash remoto | Operador validou visualmente e dispensou auditoria adicional; documentar alcance |
 | Aceito / intencional | Rocket.Chat/MongoDB excluído do Backup DR | manter escopo documentado |
