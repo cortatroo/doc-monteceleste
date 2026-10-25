@@ -6,7 +6,7 @@
 **Classificação das afirmações:** **V** = verificado por comandos ou logs; **O** = confirmado operacionalmente pelo responsável; **P** = pendente/não inspecionado.
 
 ## 1. Objetivo, escopo e delimitação
-Este documento substitui a documentação anterior de exportação e sincronização dos backups que ainda apresentava perguntas não respondidas. Descreve o ambiente observado até 24/10/2026, e não uma arquitetura hipotética. Os backups são produzidos no Ubuntu e transferidos por iniciativa do Windows. A cópia posterior para a nuvem, realizada no ambiente Windows, foi confirmada visualmente pelo responsável, mas não submetida a uma validação remota independente de integridade ou retenção (**O/P**).
+Este documento descreve o ambiente observado até 24/10/2026, e não uma arquitetura hipotética. Os backups são produzidos no Ubuntu e transferidos por iniciativa do Windows. A cópia posterior para a nuvem, realizada no ambiente Windows, foi confirmada visualmente pelo responsável, mas não submetida a uma validação remota independente de integridade ou retenção (**O/P**).
 
 O Rocket.Chat e seu MongoDB foram excluídos intencionalmente do escopo do Backup DR por decisão do responsável, e esta exclusão deve ser preservada em qualquer interpretação dos resultados. O backup local e a transferência Windows não representam cobertura desses dados.
 
