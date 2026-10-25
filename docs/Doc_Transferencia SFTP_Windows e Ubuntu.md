@@ -45,7 +45,7 @@ O Rocket.Chat e seu MongoDB foram excluídos intencionalmente do escopo do Backu
 O backup de referência `/backup/completed/2026-10-23_02h04m28s` continha `BACKUP_OK`, `NOTIFICATION_SENT`, `SHA256SUMS`, manifest e dumps. SHA-256 aprovado na origem. A rotina local completou com `Result=success`, `ExecMainStatus=0`.
 
 ## 4. Conta de serviço SFTP — identificação e restrições
-A configuração **atual**, em oposição ao antigo exemplo `Match User cobian`, é:
+A configuração **atual** é:
 
 **Arquivo:** `/etc/ssh/sshd_config.d/cobian-sftp.conf` (**V**)
 
